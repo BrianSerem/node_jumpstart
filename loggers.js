@@ -1,11 +1,14 @@
-const Logger = require('./demo')
+
+const moment = require('moment');
 
 const callBack = (data) => {
   console.log('Called listner', data)
-}
+};
 
-const logger = new Logger()
- 
-logger.on('message', callBack)
 
-logger.log('serem is a cool guy')
+const logger = (req, res, next) => {
+  console.log(`${req.protocol}://${req.get('host')}${req.originalUrl}: ${moment().format( )}`);
+  next();
+};
+
+module.exports = logger;
